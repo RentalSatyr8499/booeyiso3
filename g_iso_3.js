@@ -128,9 +128,6 @@ for (var i = 1; i < levelBugCoords.length; i++){
 };
 
 function endGame(){
-    for (var i = 0; i < partyGuests.length; i++) {
-        partyGuestMovingStats[i]["dx"] = 0;
-    } 
     var endGameContainer = document.createElement("div");
     endGameContainer.id = "endGame";
 
@@ -138,18 +135,8 @@ function endGame(){
     textElement.innerHTML = "Thanks for cleaning up the apartment! You caught " + totBugs + " bugs.";
     textElement.style.margin = "40px";  // Add margin to the text
 
-    var button1 = document.createElement("button");
-    button1.innerHTML = "Yuck, I'm never doing that again.";
-
-    var button2 = document.createElement("button");
-    button2.innerHTML = "You're welcome!";
-    button1.style.margin, button2.style.margin = "10px";  // Add margin to the button2
-
     document.body.appendChild(endGameContainer);
     endGameContainer.appendChild(textElement);
-    endGameContainer.appendChild(button1);
-    endGameContainer.appendChild(button2);
-    
 
 }
 
@@ -203,33 +190,23 @@ document.onkeydown = function(e) {
             break;
         case 32: 
             console.log("space detected!");
-            for (var i = 0; i < levelBugCoords[level].length; i++){
-                console.log("checking level " + [level] + " for highlighted bugs.");
-                if (levelBugCoords[level][i]["HL"] && levelBugCoords[level][i]["on"]){
-                    console.log("highlighted bug found!");
-                    levelBugCoords[level][i]["on"] = false;
-                    console.log(levelBugCoords[level]);
-
-                    caughtBugs += 1;
-                    bugCounter.innerHTML = caughtBugs + "/" + totBugs + " bugs caught.";
-                }
-            }
-            if (level == 0) {
-                console.log("checking for general highlighted bugs.")
-                for (var i = 0; i < generalBugCoords.length; i++) {
-                    if (generalBugCoords[i]["HL"]) {
+            for (var i = 0; i < levelBugCoords.length; i++){
+                for (var j = 0; j < levelBugCoords[i].length; j++){
+                    console.log("checking level " + [level] + " for highlighted bugs.");
+                    if (levelBugCoords[i][j]["HL"] && levelBugCoords[i][j]["on"]){
                         console.log("highlighted bug found!");
-                        generalBugCoords[i]["on"] = false;
-                        console.log(generalBugCoords);
+                        levelBugCoords[i][j]["on"] = false;
+                        console.log(levelBugCoords[i]);
 
                         caughtBugs += 1;
                         bugCounter.innerHTML = caughtBugs + "/" + totBugs + " bugs caught.";
+                    }
                 }
+                
             }
             if (caughtBugs >= totBugs) {
                 endGame();
             }
-        }
     }
 };
 
