@@ -54,7 +54,7 @@ function instruction() {
     instructionContainer.id = "instruction-Container";
 
     textElement = document.createElement("p");
-    textElement.innerHTML = "Dang, that's a lot of cockroaches. Help Booey get rid of them all by clicking on it. Make sure to check behind the furniture (press the up arrow).";
+    textElement.innerHTML = "Dang, that's a lot of cockroaches. Help Booey get rid of them all! Use the up, down, left, and right arrow keys to guide Booey over the bugs and press the space bar to catch them.";
     textElement.style.margin = "10px";  // Add margin to the text
     instructionContainer.appendChild(textElement);
     document.body.appendChild(instructionContainer);
